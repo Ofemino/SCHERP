@@ -1,0 +1,79 @@
+﻿@model SCHERP.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@section usage{
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/sweetalert2.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
+    <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
+}
+
+
+<div class="row">
+    <div class="col-md-8  col-md-offset-2">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-9">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @AutoComplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-9">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-success" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.ActionLink("Register as a new user", "Register")
+                        <span class="pull-right">
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </span>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-datepicker.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/sweetalert2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/SweetAlertMethods.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/canvas-to-blob.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/sortable.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/purify.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/fileinput.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/themes/fa/theme.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/MyCustomJs.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/student_admission.js")"></script>
+}

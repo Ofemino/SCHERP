@@ -54,6 +54,18 @@
     <Compile Include="AcademicSession.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClassGroup.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
@@ -64,6 +76,9 @@
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CommunicationDetail.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Department.cs">
@@ -95,6 +110,9 @@
       <DependentUpon>ScherpModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="SchoolDetail.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SchoolSession.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StaffProfile.cs">

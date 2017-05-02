@@ -23,15 +23,24 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="@Url.Content(@"~/Admin")">
+                <a href="#">
                     <i class="glyphicon glyphicon-user"></i><span>Admin</span><i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="@Url.Content(@"~/admin/usersconfig")"><i class="fa fa-circle-o"></i> Manage User</a>
+                        <a href="@Url.Content(@"~/Users/index")"><i class="fa fa-circle-o"></i> Manage User</a>
                     </li>
                     <li>
-                        <a href="@Url.Content(@"~/admin/sessionconfig")"><i class="fa fa-circle-o"></i> Session Config.</a>
+                        <a href="@Url.Content(@"~/SchoolSession/index")"><i class="fa fa-circle-o"></i> Manage Session</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content(@"~/Staffs/index")"><i class="fa fa-circle-o"></i> Manage Staffs</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content(@"~/GradesAndSetup/index")"><i class="fa fa-circle-o"></i> Manage Grades</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content(@"~/ExamsAndRecords/index")"><i class="fa fa-circle-o"></i> Exams And Records</a>
                     </li>
                 </ul>
             </li>

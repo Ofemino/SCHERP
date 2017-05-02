@@ -1,5 +1,5 @@
 /**
- * Created by EntralogIT on 2017-03-23.
+ * Created by Femi Adesanya on 2017-03-23.
  */
 $(document).ready(function () {
 

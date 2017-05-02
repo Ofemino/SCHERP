@@ -1,0 +1,90 @@
+﻿@model SCHERP.Models.SchoolSessionViewModel
+
+@{
+    ViewBag.Title = "School Session";
+    ViewBag.SubTitle = "Create";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@section usage{
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/sweetalert2.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
+    <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        @using (Html.BeginForm("Create", "SchoolSession", FormMethod.Post, new { @class = "form-horizontal page-form", @id = "pageForm", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                Session: <span class="lblImportant">*</span><br/>
+                                @Html.TextBoxFor(m => m.Session, new {@class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2014/2015"})
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                Year: <span class="lblImportant">*</span><br/>
+                                @Html.TextBoxFor(m => m.Year, new {@class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2015"})
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                Term: <span class="lblImportant">*</span><br/>
+                                @{
+                                    var selectList = new SelectList(
+                                        new List<SelectListItem>
+                                        {
+                                            new SelectListItem {Text = "1ST TERM", Value = "1ST TERM"},
+                                            new SelectListItem {Text = "2ND TERM", Value = "2ND TERM"},
+                                            new SelectListItem {Text = "3RD TERM", Value = "3RD TERM"},
+                                        }, "Value", "Text");
+                                }
+                                @Html.DropDownListFor(m => m.Term, selectList, "== Select TERM ==", new {@class = "form-control", @required = "required"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                Description: <br/>
+                                <textarea required="required" name="Description" id="Description"
+                                          class="form-control textarea" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input id="SetDefaultCbx" name="SetDefaultCbx" type="checkbox" value="">Set as default session/term</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("TxtUrl", @Url.Content(@"~/SchoolSession/create"))
+                <button class="pull-right btn-login" id="btnSession" name="btnSession" type="button">Save Entry</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+   <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-datepicker.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/sweetalert2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/SweetAlertMethods.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/MyCustomJs.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/schoolsession.js")"></script>
+}
+

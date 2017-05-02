@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace SCHERP.Controllers
 {
+    [Authorize]
     public class PreAdmissionController : Controller
     {
         // GET: PreAdmission

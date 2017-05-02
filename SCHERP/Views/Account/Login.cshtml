@@ -1,79 +1,105 @@
 ﻿@model SCHERP.Models.LoginViewModel
+
 @{
-    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
-    ViewBag.Title = "User Account";
+    ViewBag.Title = "Login";
     ViewBag.SubTitle = "Login";
-}
-
-@section usage{
-
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/sweetalert2.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
-    <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
 
-<div class="row">
-    <div class="col-md-8  col-md-offset-2">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
 
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-9">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-9">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-success" />
-                    </div>
-                </div>
+<style>
+    body {
+        margin: 0 auto !important;
+        background-image: url("../content/imgs/home.jpg");
+        background-repeat: repeat-y;
+        background-size: 100% 100% !important;
+    }
 
-                <div class="form-group">
-                    <div class="col-md-12">
-                        @Html.ActionLink("Register as a new user", "Register")
-                        <span class="pull-right">
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </span>
-                    </div>
-                </div>
-            }
-        </section>
+
+
+    input[type="text"], input[type="password"] {
+        height: 50px;
+        width: 400px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        padding-left: 35px;
+    }
+
+    /*.form-control {
+            width: 100% !important;
+            height: 50px !important;
+            font-size: 18px !important;
+            margin-bottom: 20px !important;
+            background-color: #fff !important;
+            padding-left: 35px !important;
+        }*/
+
+    .form-input::before {
+        content: "\f007";
+        position: absolute;
+        font-family: "FontAwsome";
+        font-size: 35px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        color: #9b59b6;
+    }
+
+    .form-input:nth-child(2)::before {
+        content: "\f023";
+    }
+
+    .btn-login {
+        padding: 15px 25px;
+        color: #fff;
+        background-color: #2ecc71;
+        border: none;
+        border-radius: 4px;
+        border-bottom: 4px solid #27ae60;
+    }
+</style>
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        <div class="col-md-12" align="center">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
     </div>
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <div class="form-group">
+        <div class="col-md-12" align="center">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @AutoComplete = "off" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-    <script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-datepicker.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/sweetalert2.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/SweetAlertMethods.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/canvas-to-blob.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/sortable.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/plugins/purify.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/fileinput.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/themes/fa/theme.js")"></script>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember"> Remember Me
+                </label>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript" src="@Url.Content("~/Content/js/MyCustomJs.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/js/student_admission.js")"></script>
+    <div class="form-group">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-login">
+                <i class="fa fa-btn fa-sign-in"></i> Login
+            </button>
+            <br>
+            <a class="btn btn-link" href="#">Forgot Your Password?</a>|
+            <a class="btn btn-link" href="#">Register</a>
+        </div>
+    </div>
+
+
 }

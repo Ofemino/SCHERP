@@ -25,6 +25,15 @@
         <EntityTypeShape EntityType="ScherpModel.StudyHistory" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ScherpModel.SubjectTeacher" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ScherpModel.TermlyResult" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScherpModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ScherpModel.AspNetRole" Width="1.5" PointX="11.75" PointY="14.5" />
+        <EntityTypeShape EntityType="ScherpModel.AspNetUserClaim" Width="1.5" PointX="16.25" PointY="15.625" />
+        <EntityTypeShape EntityType="ScherpModel.AspNetUserLogin" Width="1.5" PointX="16.25" PointY="13" />
+        <EntityTypeShape EntityType="ScherpModel.AspNetUser" Width="1.5" PointX="14" PointY="13.375" />
+        <EntityTypeShape EntityType="ScherpModel.SchoolSession" Width="1.5" PointX="2.75" PointY="13.75" />
+        <AssociationConnector Association="ScherpModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ScherpModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ScherpModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
