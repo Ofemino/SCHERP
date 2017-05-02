@@ -17,7 +17,7 @@
     <AssemblyName>SCHERP</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -180,24 +180,233 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PreAdmissionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PreAdmissionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="bootstrap\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\AdminLTE.css" />
+    <Content Include="Content\css\AdminLTE.min.css" />
+    <Content Include="Content\css\AppStyles.css" />
+    <Content Include="Content\css\bootstrap-datepicker3.css" />
+    <Content Include="Content\css\bootstrapValidator.css" />
+    <Content Include="Content\css\bootstrapValidator.min.css" />
+    <Content Include="Content\css\fileinput.css" />
+    <Content Include="Content\css\fileinput.min.css" />
+    <Content Include="Content\css\kendo.common.css" />
+    <Content Include="Content\css\material.css" />
+    <Content Include="Content\css\material.min.css" />
+    <Content Include="Content\css\materialize.css" />
+    <Content Include="Content\css\materialize.min.css" />
+    <Content Include="Content\css\MyCustomStyles.css" />
+    <Content Include="Content\css\skins\skin-black-light.css" />
+    <Content Include="Content\css\skins\skin-black-light.min.css" />
+    <Content Include="Content\css\skins\skin-black.css" />
+    <Content Include="Content\css\skins\skin-black.min.css" />
+    <Content Include="Content\css\skins\skin-blue-light.css" />
+    <Content Include="Content\css\skins\skin-blue-light.min.css" />
+    <Content Include="Content\css\skins\skin-blue.css" />
+    <Content Include="Content\css\skins\skin-blue.min.css" />
+    <Content Include="Content\css\skins\skin-green-light.css" />
+    <Content Include="Content\css\skins\skin-green-light.min.css" />
+    <Content Include="Content\css\skins\skin-green.css" />
+    <Content Include="Content\css\skins\skin-green.min.css" />
+    <Content Include="Content\css\skins\skin-purple-light.css" />
+    <Content Include="Content\css\skins\skin-purple-light.min.css" />
+    <Content Include="Content\css\skins\skin-purple.css" />
+    <Content Include="Content\css\skins\skin-purple.min.css" />
+    <Content Include="Content\css\skins\skin-red-light.css" />
+    <Content Include="Content\css\skins\skin-red-light.min.css" />
+    <Content Include="Content\css\skins\skin-red.css" />
+    <Content Include="Content\css\skins\skin-red.min.css" />
+    <Content Include="Content\css\skins\skin-yellow-light.css" />
+    <Content Include="Content\css\skins\skin-yellow-light.min.css" />
+    <Content Include="Content\css\skins\skin-yellow.css" />
+    <Content Include="Content\css\skins\skin-yellow.min.css" />
+    <Content Include="Content\css\skins\_all-skins.css" />
+    <Content Include="Content\css\skins\_all-skins.min.css" />
+    <Content Include="Content\css\sweetalert2.min.css" />
+    <Content Include="Content\js\app.js" />
+    <Content Include="Content\js\app.min.js" />
+    <Content Include="Content\js\bootstrap-datepicker.min.js" />
+    <Content Include="Content\js\bootstrapValidator.js" />
+    <Content Include="Content\js\bootstrapValidator.min.js" />
+    <Content Include="Content\js\demo.js" />
+    <Content Include="Content\js\fileinput.js" />
+    <Content Include="Content\js\fileinput.min.js" />
+    <Content Include="Content\js\kendo.all.js" />
+    <Content Include="Content\js\language\ar_MA.js" />
+    <Content Include="Content\js\language\be_FR.js" />
+    <Content Include="Content\js\language\be_NL.js" />
+    <Content Include="Content\js\language\bg_BG.js" />
+    <Content Include="Content\js\language\cs_CZ.js" />
+    <Content Include="Content\js\language\da_DK.js" />
+    <Content Include="Content\js\language\de_DE.js" />
+    <Content Include="Content\js\language\en_US.js" />
+    <Content Include="Content\js\language\es_CL.js" />
+    <Content Include="Content\js\language\es_ES.js" />
+    <Content Include="Content\js\language\fa_IR.js" />
+    <Content Include="Content\js\language\fr_FR.js" />
+    <Content Include="Content\js\language\gr_EL.js" />
+    <Content Include="Content\js\language\hu_HU.js" />
+    <Content Include="Content\js\language\id_ID.js" />
+    <Content Include="Content\js\language\it_IT.js" />
+    <Content Include="Content\js\language\ja_JP.js" />
+    <Content Include="Content\js\language\nl_NL.js" />
+    <Content Include="Content\js\language\no_NO.js" />
+    <Content Include="Content\js\language\pl_PL.js" />
+    <Content Include="Content\js\language\pt_BR.js" />
+    <Content Include="Content\js\language\ro_RO.js" />
+    <Content Include="Content\js\language\ru_RU.js" />
+    <Content Include="Content\js\language\sr_RS.js" />
+    <Content Include="Content\js\language\sv_SE.js" />
+    <Content Include="Content\js\language\th_TH.js" />
+    <Content Include="Content\js\language\tr_TR.js" />
+    <Content Include="Content\js\language\ua_UA.js" />
+    <Content Include="Content\js\language\vi_VN.js" />
+    <Content Include="Content\js\language\zh_CN.js" />
+    <Content Include="Content\js\language\zh_TW.js" />
+    <Content Include="Content\js\locales\ar.js" />
+    <Content Include="Content\js\locales\bg.js" />
+    <Content Include="Content\js\locales\ca.js" />
+    <Content Include="Content\js\locales\cr.js" />
+    <Content Include="Content\js\locales\cz.js" />
+    <Content Include="Content\js\locales\da.js" />
+    <Content Include="Content\js\locales\de.js" />
+    <Content Include="Content\js\locales\el.js" />
+    <Content Include="Content\js\locales\es.js" />
+    <Content Include="Content\js\locales\fa.js" />
+    <Content Include="Content\js\locales\fi.js" />
+    <Content Include="Content\js\locales\fr.js" />
+    <Content Include="Content\js\locales\hu.js" />
+    <Content Include="Content\js\locales\id.js" />
+    <Content Include="Content\js\locales\it.js" />
+    <Content Include="Content\js\locales\ja.js" />
+    <Content Include="Content\js\locales\kr.js" />
+    <Content Include="Content\js\locales\kz.js" />
+    <Content Include="Content\js\locales\LANG.js" />
+    <Content Include="Content\js\locales\nl.js" />
+    <Content Include="Content\js\locales\pl.js" />
+    <Content Include="Content\js\locales\pt-BR.js" />
+    <Content Include="Content\js\locales\pt.js" />
+    <Content Include="Content\js\locales\ro.js" />
+    <Content Include="Content\js\locales\ru.js" />
+    <Content Include="Content\js\locales\sk.js" />
+    <Content Include="Content\js\locales\sl.js" />
+    <Content Include="Content\js\locales\sv.js" />
+    <Content Include="Content\js\locales\th.js" />
+    <Content Include="Content\js\locales\tr.js" />
+    <Content Include="Content\js\locales\uk.js" />
+    <Content Include="Content\js\locales\vi.js" />
+    <Content Include="Content\js\locales\zh-TW.js" />
+    <Content Include="Content\js\locales\zh.js" />
+    <Content Include="Content\js\material.js" />
+    <Content Include="Content\js\material.min.js" />
+    <Content Include="Content\js\materialize.js" />
+    <Content Include="Content\js\materialize.min.js" />
+    <Content Include="Content\js\MyCustomJs.js" />
+    <Content Include="Content\js\pages\dashboard.js" />
+    <Content Include="Content\js\pages\dashboard2.js" />
+    <Content Include="Content\js\plugins\canvas-to-blob.js" />
+    <Content Include="Content\js\plugins\canvas-to-blob.min.js" />
+    <Content Include="Content\js\plugins\purify.js" />
+    <Content Include="Content\js\plugins\purify.min.js" />
+    <Content Include="Content\js\plugins\sortable.js" />
+    <Content Include="Content\js\plugins\sortable.min.js" />
+    <Content Include="Content\js\student_admission.js" />
+    <Content Include="Content\js\sweetalert2.min.js" />
+    <Content Include="Content\js\sweetalertMethods.js" />
+    <Content Include="Content\themes\explorer\theme.css" />
+    <Content Include="Content\themes\explorer\theme.js" />
+    <Content Include="Content\themes\fa\theme.js" />
+    <Content Include="Content\themes\gly\theme.js" />
+    <Content Include="dist\css\AdminLTE.css" />
+    <Content Include="dist\css\AdminLTE.min.css" />
+    <Content Include="dist\css\skins\skin-black-light.css" />
+    <Content Include="dist\css\skins\skin-black-light.min.css" />
+    <Content Include="dist\css\skins\skin-black.css" />
+    <Content Include="dist\css\skins\skin-black.min.css" />
+    <Content Include="dist\css\skins\skin-blue-light.css" />
+    <Content Include="dist\css\skins\skin-blue-light.min.css" />
+    <Content Include="dist\css\skins\skin-blue.css" />
+    <Content Include="dist\css\skins\skin-blue.min.css" />
+    <Content Include="dist\css\skins\skin-green-light.css" />
+    <Content Include="dist\css\skins\skin-green-light.min.css" />
+    <Content Include="dist\css\skins\skin-green.css" />
+    <Content Include="dist\css\skins\skin-green.min.css" />
+    <Content Include="dist\css\skins\skin-purple-light.css" />
+    <Content Include="dist\css\skins\skin-purple-light.min.css" />
+    <Content Include="dist\css\skins\skin-purple.css" />
+    <Content Include="dist\css\skins\skin-purple.min.css" />
+    <Content Include="dist\css\skins\skin-red-light.css" />
+    <Content Include="dist\css\skins\skin-red-light.min.css" />
+    <Content Include="dist\css\skins\skin-red.css" />
+    <Content Include="dist\css\skins\skin-red.min.css" />
+    <Content Include="dist\css\skins\skin-yellow-light.css" />
+    <Content Include="dist\css\skins\skin-yellow-light.min.css" />
+    <Content Include="dist\css\skins\skin-yellow.css" />
+    <Content Include="dist\css\skins\skin-yellow.min.css" />
+    <Content Include="dist\css\skins\_all-skins.css" />
+    <Content Include="dist\css\skins\_all-skins.min.css" />
+    <Content Include="dist\img\avatar.png" />
+    <Content Include="dist\img\avatar04.png" />
+    <Content Include="dist\img\avatar2.png" />
+    <Content Include="dist\img\avatar3.png" />
+    <Content Include="dist\img\avatar5.png" />
+    <Content Include="dist\img\boxed-bg.jpg" />
+    <Content Include="dist\img\boxed-bg.png" />
+    <Content Include="dist\img\credit\american-express.png" />
+    <Content Include="dist\img\credit\cirrus.png" />
+    <Content Include="dist\img\credit\mastercard.png" />
+    <Content Include="dist\img\credit\mestro.png" />
+    <Content Include="dist\img\credit\paypal.png" />
+    <Content Include="dist\img\credit\paypal2.png" />
+    <Content Include="dist\img\credit\visa.png" />
+    <Content Include="dist\img\default-50x50.gif" />
+    <Content Include="dist\img\icons.png" />
+    <Content Include="dist\img\photo1.png" />
+    <Content Include="dist\img\photo2.png" />
+    <Content Include="dist\img\photo3.jpg" />
+    <Content Include="dist\img\photo4.jpg" />
+    <Content Include="dist\img\user1-128x128.jpg" />
+    <Content Include="dist\img\user2-160x160.jpg" />
+    <Content Include="dist\img\user3-128x128.jpg" />
+    <Content Include="dist\img\user4-128x128.jpg" />
+    <Content Include="dist\img\user5-128x128.jpg" />
+    <Content Include="dist\img\user6-128x128.jpg" />
+    <Content Include="dist\img\user7-128x128.jpg" />
+    <Content Include="dist\img\user8-128x128.jpg" />
+    <Content Include="dist\js\app.js" />
+    <Content Include="dist\js\app.min.js" />
+    <Content Include="dist\js\demo.js" />
+    <Content Include="dist\js\pages\dashboard.js" />
+    <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="bootstrap\css\bootstrap.css.map" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -206,6 +415,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -244,9 +454,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutMaster.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Shared\_PartialLeftMenu.cshtml" />
+    <Content Include="Views\Shared\_PartialRightMenu.cshtml" />
+    <Content Include="Views\PreAdmission\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\imgs\" />
+    <Folder Include="Content\kendo\" />
+    <Folder Include="Content\profilepics\" />
+    <Folder Include="plugins\" />
+    <Folder Include="Scripts\kendo\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -255,6 +476,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{0da02f36-5bc0-4e40-b1a2-3b8e503113d1}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{812a31ab-82d5-4521-b362-c3c902e462c6}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -274,7 +505,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2831</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2831/</IISUrl>
+          <IISUrl>http://localhost/scherp</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

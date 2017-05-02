@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScherpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Session" Type="varchar" MaxLength="20" />
+          <Property Name="Term" Type="varchar" MaxLength="20" />
+          <Property Name="Year" Type="varchar" MaxLength="20" />
+          <Property Name="TermBegins" Type="varchar" MaxLength="50" />
+          <Property Name="TermEnds" Type="varchar" MaxLength="50" />
+          <Property Name="SchoolOpens" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ClassGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ClassSubjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
+          <Property Name="ClassGroupId" Type="int" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ClassTeacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffId" Type="int" />
+          <Property Name="ClassGroup" Type="varchar" MaxLength="20" />
+          <Property Name="Class" Type="varchar" MaxLength="10" />
+          <Property Name="Arm" Type="varchar" MaxLength="10" />
+          <Property Name="SessionId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="CommunicationDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Phone1" Type="varchar" MaxLength="20" />
+          <Property Name="Phone2" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ManageGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassGroupId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="GradeMin" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GradeMax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="SessionId" Type="int" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ParentDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="250" />
+          <Property Name="MotherName" Type="varchar" MaxLength="250" />
+          <Property Name="FatherOccupation" Type="varchar" MaxLength="50" />
+          <Property Name="MotherOccupation" Type="varchar" MaxLength="50" />
+          <Property Name="FatherOfficeAddress" Type="varchar" MaxLength="200" />
+          <Property Name="MotherOfficeAddress" Type="nchar" MaxLength="10" />
+          <Property Name="FofficePhone1" Type="varchar" MaxLength="20" />
+          <Property Name="MofficePhone1" Type="varchar" MaxLength="20" />
+          <Property Name="FofficePhone2" Type="varchar" MaxLength="20" />
+          <Property Name="MofficePhone2" Type="varchar" MaxLength="20" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PreAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="OtherNames" Type="varchar" MaxLength="150" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Soo" Type="int" />
+          <Property Name="ContactTitle" Type="int" />
+          <Property Name="ContactFullName" Type="varchar" MaxLength="150" />
+          <Property Name="ContactMobile" Type="varchar" MaxLength="50" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="50" />
+          <Property Name="ContactAddress" Type="varchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Avatar" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="SchoolDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Slogan" Type="varchar" MaxLength="250" />
+          <Property Name="Addres" Type="varchar" MaxLength="250" />
+          <Property Name="Phones" Type="varchar" MaxLength="50" />
+          <Property Name="WebAddress" Type="varchar" MaxLength="150" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="EdZone" Type="varchar" MaxLength="50" />
+          <Property Name="dateFounded" Type="varchar" MaxLength="50" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="Bannar" Type="image" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="StaffProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="20" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" />
+          <Property Name="Dob" Type="datetime" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="Soo" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Phone1" Type="varchar" MaxLength="20" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="Avatar" Type="image" />
+          <Property Name="StaffType" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="StateCapitals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Capital" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreAdmissionId" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="StudentClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ClassGroup" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentPreAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="OtherNames" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Soo" Type="int" />
+          <Property Name="Nationality" Type="varchar" MaxLength="150" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="StudentProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="OtherNames" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Soo" Type="int" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="Avatar" Type="image" />
+        </EntityType>
+        <EntityType Name="StudentRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="10" />
+          <Property Name="Session" Type="varchar" MaxLength="20" />
+          <Property Name="Term" Type="varchar" MaxLength="10" />
+          <Property Name="RegistrationDate" Type="datetime" />
+          <Property Name="UserId" Type="varchar" MaxLength="250" />
+          <Property Name="AcademicStatus" Type="varchar" MaxLength="20" />
+          <Property Name="PreviousClass" Type="varchar" MaxLength="20" />
+          <Property Name="NewClass" Type="varchar" MaxLength="20" />
+          <Property Name="SessionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudyHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="term" Type="varchar" MaxLength="20" />
+          <Property Name="class" Type="varchar" MaxLength="10" />
+          <Property Name="classTeacher" Type="varchar" MaxLength="10" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="studyYear" Type="varchar" MaxLength="10" />
+          <Property Name="studySession" Type="varchar" MaxLength="10" />
+          <Property Name="studyHistoryKey" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectTeacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="ClassGroupId" Type="int" />
+          <Property Name="StaffId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="ArmId" Type="int" />
+          <Property Name="SessionId" Type="int" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TermlyResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="SubjectTeacherId" Type="int" />
+          <Property Name="AssignScore1" Type="real" />
+          <Property Name="AssignScore2" Type="real" />
+          <Property Name="AssignScore3" Type="real" />
+          <Property Name="AssignScore4" Type="real" />
+          <Property Name="TestScore1" Type="real" />
+          <Property Name="TestScore2" Type="real" />
+          <Property Name="TestScore3" Type="real" />
+          <Property Name="TestScore4" Type="real" />
+          <Property Name="ExamScore" Type="real" />
+          <Property Name="Total" Type="real" />
+          <Property Name="Grade" Type="varchar" MaxLength="10" />
+          <Property Name="AverageScore" Type="real" />
+          <Property Name="SessionId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="ArmId" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="250" />
+          <Property Name="CreatedAt" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="250" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="ScherpModelStoreContainer">
+          <EntitySet Name="AcademicSession" EntityType="Self.AcademicSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassGroup" EntityType="Self.ClassGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassSubjects" EntityType="Self.ClassSubjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassTeacher" EntityType="Self.ClassTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunicationDetails" EntityType="Self.CommunicationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManageGrade" EntityType="Self.ManageGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentDetails" EntityType="Self.ParentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreAdmission" EntityType="Self.PreAdmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffProfile" EntityType="Self.StaffProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateCapitals" EntityType="Self.StateCapitals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentAdmission" EntityType="Self.StudentAdmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentClass" EntityType="Self.StudentClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentPreAdmission" EntityType="Self.StudentPreAdmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentProfile" EntityType="Self.StudentProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentRegistration" EntityType="Self.StudentRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyHistory" EntityType="Self.StudyHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectTeacher" EntityType="Self.SubjectTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TermlyResult" EntityType="Self.TermlyResult" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScherpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Session" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Term" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TermBegins" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermEnds" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolOpens" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClassGroupId" Type="Int32" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassTeacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffId" Type="Int32" />
+          <Property Name="ClassGroup" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Arm" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SessionId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CommunicationDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ManageGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassGroupId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="GradeMin" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="GradeMax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="SessionId" Type="Int32" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ParentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MotherName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FatherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherOfficeAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MotherOfficeAddress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FofficePhone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MofficePhone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FofficePhone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MofficePhone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PreAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherNames" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Soo" Type="Int32" />
+          <Property Name="ContactTitle" Type="Int32" />
+          <Property Name="ContactFullName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ContactMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SchoolDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Slogan" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Addres" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Phones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WebAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EdZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateFounded" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Bannar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StaffProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Soo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StaffType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StateCapital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Capital" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreAdmissionId" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Class" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassGroup" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentPreAdmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Soo" Type="Int32" />
+          <Property Name="Nationality" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="StudentProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Soo" Type="Int32" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="StudentRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Session" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Term" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AcademicStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NewClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SessionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudyHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="term" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="class" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="classTeacher" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studyYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="studySession" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="studyHistoryKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectTeacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="ClassGroupId" Type="Int32" />
+          <Property Name="StaffId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="ArmId" Type="Int32" />
+          <Property Name="SessionId" Type="Int32" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TermlyResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="SubjectTeacherId" Type="Int32" />
+          <Property Name="AssignScore1" Type="Single" />
+          <Property Name="AssignScore2" Type="Single" />
+          <Property Name="AssignScore3" Type="Single" />
+          <Property Name="AssignScore4" Type="Single" />
+          <Property Name="TestScore1" Type="Single" />
+          <Property Name="TestScore2" Type="Single" />
+          <Property Name="TestScore3" Type="Single" />
+          <Property Name="TestScore4" Type="Single" />
+          <Property Name="ExamScore" Type="Single" />
+          <Property Name="Total" Type="Single" />
+          <Property Name="Grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AverageScore" Type="Single" />
+          <Property Name="SessionId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="ArmId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ScherpDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicSessions" EntityType="Self.AcademicSession" />
+          <EntitySet Name="ClassGroups" EntityType="Self.ClassGroup" />
+          <EntitySet Name="ClassSubjects" EntityType="Self.ClassSubject" />
+          <EntitySet Name="ClassTeachers" EntityType="Self.ClassTeacher" />
+          <EntitySet Name="CommunicationDetails" EntityType="Self.CommunicationDetail" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="ManageGrades" EntityType="Self.ManageGrade" />
+          <EntitySet Name="ParentDetails" EntityType="Self.ParentDetail" />
+          <EntitySet Name="PreAdmissions" EntityType="Self.PreAdmission" />
+          <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetail" />
+          <EntitySet Name="StaffProfiles" EntityType="Self.StaffProfile" />
+          <EntitySet Name="StateCapitals" EntityType="Self.StateCapital" />
+          <EntitySet Name="StudentAdmissions" EntityType="Self.StudentAdmission" />
+          <EntitySet Name="StudentClasses" EntityType="Self.StudentClass" />
+          <EntitySet Name="StudentPreAdmissions" EntityType="Self.StudentPreAdmission" />
+          <EntitySet Name="StudentProfiles" EntityType="Self.StudentProfile" />
+          <EntitySet Name="StudentRegistrations" EntityType="Self.StudentRegistration" />
+          <EntitySet Name="StudyHistories" EntityType="Self.StudyHistory" />
+          <EntitySet Name="SubjectTeachers" EntityType="Self.SubjectTeacher" />
+          <EntitySet Name="TermlyResults" EntityType="Self.TermlyResult" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScherpModelStoreContainer" CdmEntityContainer="ScherpDbContext">
+          <EntitySetMapping Name="AcademicSessions">
+            <EntityTypeMapping TypeName="ScherpModel.AcademicSession">
+              <MappingFragment StoreEntitySet="AcademicSession">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="TermBegins" ColumnName="TermBegins" />
+                <ScalarProperty Name="TermEnds" ColumnName="TermEnds" />
+                <ScalarProperty Name="SchoolOpens" ColumnName="SchoolOpens" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassGroups">
+            <EntityTypeMapping TypeName="ScherpModel.ClassGroup">
+              <MappingFragment StoreEntitySet="ClassGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassSubjects">
+            <EntityTypeMapping TypeName="ScherpModel.ClassSubject">
+              <MappingFragment StoreEntitySet="ClassSubjects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ClassGroupId" ColumnName="ClassGroupId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassTeachers">
+            <EntityTypeMapping TypeName="ScherpModel.ClassTeacher">
+              <MappingFragment StoreEntitySet="ClassTeacher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="ClassGroup" ColumnName="ClassGroup" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Arm" ColumnName="Arm" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunicationDetails">
+            <EntityTypeMapping TypeName="ScherpModel.CommunicationDetail">
+              <MappingFragment StoreEntitySet="CommunicationDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ScherpModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageGrades">
+            <EntityTypeMapping TypeName="ScherpModel.ManageGrade">
+              <MappingFragment StoreEntitySet="ManageGrade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassGroupId" ColumnName="ClassGroupId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="GradeMin" ColumnName="GradeMin" />
+                <ScalarProperty Name="GradeMax" ColumnName="GradeMax" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentDetails">
+            <EntityTypeMapping TypeName="ScherpModel.ParentDetail">
+              <MappingFragment StoreEntitySet="ParentDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherOccupation" ColumnName="FatherOccupation" />
+                <ScalarProperty Name="MotherOccupation" ColumnName="MotherOccupation" />
+                <ScalarProperty Name="FatherOfficeAddress" ColumnName="FatherOfficeAddress" />
+                <ScalarProperty Name="MotherOfficeAddress" ColumnName="MotherOfficeAddress" />
+                <ScalarProperty Name="FofficePhone1" ColumnName="FofficePhone1" />
+                <ScalarProperty Name="MofficePhone1" ColumnName="MofficePhone1" />
+                <ScalarProperty Name="FofficePhone2" ColumnName="FofficePhone2" />
+                <ScalarProperty Name="MofficePhone2" ColumnName="MofficePhone2" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreAdmissions">
+            <EntityTypeMapping TypeName="ScherpModel.PreAdmission">
+              <MappingFragment StoreEntitySet="PreAdmission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Soo" ColumnName="Soo" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactFullName" ColumnName="ContactFullName" />
+                <ScalarProperty Name="ContactMobile" ColumnName="ContactMobile" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolDetails">
+            <EntityTypeMapping TypeName="ScherpModel.SchoolDetail">
+              <MappingFragment StoreEntitySet="SchoolDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Phones" ColumnName="Phones" />
+                <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EdZone" ColumnName="EdZone" />
+                <ScalarProperty Name="dateFounded" ColumnName="dateFounded" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Bannar" ColumnName="Bannar" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffProfiles">
+            <EntityTypeMapping TypeName="ScherpModel.StaffProfile">
+              <MappingFragment StoreEntitySet="StaffProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Soo" ColumnName="Soo" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="StaffType" ColumnName="StaffType" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCapitals">
+            <EntityTypeMapping TypeName="ScherpModel.StateCapital">
+              <MappingFragment StoreEntitySet="StateCapitals">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAdmissions">
+            <EntityTypeMapping TypeName="ScherpModel.StudentAdmission">
+              <MappingFragment StoreEntitySet="StudentAdmission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PreAdmissionId" ColumnName="PreAdmissionId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentClasses">
+            <EntityTypeMapping TypeName="ScherpModel.StudentClass">
+              <MappingFragment StoreEntitySet="StudentClass">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="ClassGroup" ColumnName="ClassGroup" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPreAdmissions">
+            <EntityTypeMapping TypeName="ScherpModel.StudentPreAdmission">
+              <MappingFragment StoreEntitySet="StudentPreAdmission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Soo" ColumnName="Soo" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentProfiles">
+            <EntityTypeMapping TypeName="ScherpModel.StudentProfile">
+              <MappingFragment StoreEntitySet="StudentProfile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Soo" ColumnName="Soo" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentRegistrations">
+            <EntityTypeMapping TypeName="ScherpModel.StudentRegistration">
+              <MappingFragment StoreEntitySet="StudentRegistration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AcademicStatus" ColumnName="AcademicStatus" />
+                <ScalarProperty Name="PreviousClass" ColumnName="PreviousClass" />
+                <ScalarProperty Name="NewClass" ColumnName="NewClass" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudyHistories">
+            <EntityTypeMapping TypeName="ScherpModel.StudyHistory">
+              <MappingFragment StoreEntitySet="StudyHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="classTeacher" ColumnName="classTeacher" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="studyYear" ColumnName="studyYear" />
+                <ScalarProperty Name="studySession" ColumnName="studySession" />
+                <ScalarProperty Name="studyHistoryKey" ColumnName="studyHistoryKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectTeachers">
+            <EntityTypeMapping TypeName="ScherpModel.SubjectTeacher">
+              <MappingFragment StoreEntitySet="SubjectTeacher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="ClassGroupId" ColumnName="ClassGroupId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ArmId" ColumnName="ArmId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TermlyResults">
+            <EntityTypeMapping TypeName="ScherpModel.TermlyResult">
+              <MappingFragment StoreEntitySet="TermlyResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="SubjectTeacherId" ColumnName="SubjectTeacherId" />
+                <ScalarProperty Name="AssignScore1" ColumnName="AssignScore1" />
+                <ScalarProperty Name="AssignScore2" ColumnName="AssignScore2" />
+                <ScalarProperty Name="AssignScore3" ColumnName="AssignScore3" />
+                <ScalarProperty Name="AssignScore4" ColumnName="AssignScore4" />
+                <ScalarProperty Name="TestScore1" ColumnName="TestScore1" />
+                <ScalarProperty Name="TestScore2" ColumnName="TestScore2" />
+                <ScalarProperty Name="TestScore3" ColumnName="TestScore3" />
+                <ScalarProperty Name="TestScore4" ColumnName="TestScore4" />
+                <ScalarProperty Name="ExamScore" ColumnName="ExamScore" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="AverageScore" ColumnName="AverageScore" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ArmId" ColumnName="ArmId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

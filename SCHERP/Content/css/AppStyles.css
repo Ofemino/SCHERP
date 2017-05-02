@@ -1,0 +1,22 @@
+.contentTitle {
+    text-decoration: underline;
+}
+
+.profilePicture{
+    border-radius: 50%;
+    border: solid lightgrey 1pt;
+    height: 130px;
+    width: auto;
+    float: left;
+    margin-right: 30px;
+}
+.profilePicture-sm{
+    border-radius: 50%;
+    border: solid lightgrey 1pt;
+    height: 50px;
+    width: auto;
+}
+
+.sidebar-toggle{
+    max-height: 50px!important;
+}
