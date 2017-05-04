@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using DAL;
+using SCHERP.Models;
 
 namespace SCHERP.Controllers
 {
@@ -29,10 +30,15 @@ namespace SCHERP.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(SchoolSession session)
+        //[ValidateAntiForgeryToken]
+        public JsonResult CreateSession(SchoolSession session)
         {
+            if (session != null)
+            {
+                return Json(new { msg = "1", reason = "Full!" });
 
-            return View();
+            }
+            return Json(new { msg = "0", reason = "Empty!" });
         }
     }
 }

@@ -14,29 +14,25 @@
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        @using (Html.BeginForm("Create", "SchoolSession", FormMethod.Post, new { @class = "form-horizontal page-form", @id = "pageForm", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-
+        <div class="form-horizontal page-form" id="pageForm" role="form">
             <div class="col-md-10">
                 <div class="row">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                Session: <span class="lblImportant">*</span><br/>
+                                Session: <span class="lblImportant">*</span><br />
                                 @Html.TextBoxFor(m => m.Session, new {@class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2014/2015"})
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                Year: <span class="lblImportant">*</span><br/>
+                                Year: <span class="lblImportant">*</span><br />
                                 @Html.TextBoxFor(m => m.Year, new {@class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2015"})
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                Term: <span class="lblImportant">*</span><br/>
+                                Term: <span class="lblImportant">*</span><br />
                                 @{
                                     var selectList = new SelectList(
                                         new List<SelectListItem>
@@ -51,9 +47,29 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                School Starts: <span class="lblImportant">*</span><br />
+                                @Html.TextBoxFor(m => m.SchoolStart, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "dd/mm/yyyy" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                School Ends: <span class="lblImportant">*</span><br />
+                                @Html.TextBoxFor(m => m.SchoolEnd, new {@class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "dd/mm/yyyy"})
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                School Days: <br />
+                                @Html.TextBox("SchoolDays", null, new { @class = "form-control", @type = "text", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                Description: <br/>
+                                Description: <br />
                                 <textarea required="required" name="Description" id="Description"
                                           class="form-control textarea" rows="5"></textarea>
                             </div>
@@ -69,10 +85,10 @@
                         </div>
                     </div>
                 </div>
-                @Html.Hidden("TxtUrl", @Url.Content(@"~/SchoolSession/create"))
+                @Html.Hidden("TxtUrl", @Url.Content(@"~/SchoolSession/CreateSession"))
                 <button class="pull-right btn-login" id="btnSession" name="btnSession" type="button">Save Entry</button>
             </div>
-        }
+        </div>
     </div>
 </div>
 
@@ -86,5 +102,8 @@
 
     <script type="text/javascript" src="@Url.Content("~/Content/js/MyCustomJs.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/js/schoolsession.js")"></script>
+
+
+
 }
 
