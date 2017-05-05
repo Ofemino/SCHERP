@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExamsAndRecordsController.cs" />
     <Compile Include="Controllers\GradesAndSetupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PreAdmissionViewModel.cs" />
     <Compile Include="Models\SchoolSessionViewModel.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1452,13 +1454,15 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="plugins\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Staffs\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

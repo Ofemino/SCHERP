@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Exams And Records";
+    ViewBag.Title = "Users";
     ViewBag.SubTitle = "Index";
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
     <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
 }
+
 <div class="row">
     <div class="col-md-12">
         <div class="btn btn-group" style="padding-left: 0">
-            <a href="@Url.Action("Create", "ExamsAndRecords")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus">&nbsp;Create</i></a>
+            @* <a href="@Url.Action("Create", "User")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus">&nbsp;Create</i></a>*@
             @*<button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-eye-open">&nbsp;View</i></button>
                 <button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash">&nbsp;Delete</i></button>*@
         </div>
@@ -23,9 +24,36 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-12">
-       
+        <table class="table table-hover table-responsive table-bordered">
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>IsConfirmed</td>
+                    <td>Phone Number</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var u in @ViewBag.AllUSers)
+                    {
+                        <tr>
+                            <td>@u.UserName</td>
+                            <td>@u.Email</td>
+                            <td>@u.EmailConfirmed</td>
+                            <td>@u.PhoneNumber</td>
+                            <td>
+                                <a href="@Url.Action("Edit", "User", new {id=@u.Id})"><i class="glyphicon glyphicon-pen"></i> Edit</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 

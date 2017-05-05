@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Exams And Records";
+    ViewBag.Title = "Staffs";
     ViewBag.SubTitle = "Index";
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
     <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
 }
+
 <div class="row">
     <div class="col-md-12">
         <div class="btn btn-group" style="padding-left: 0">
-            <a href="@Url.Action("Create", "ExamsAndRecords")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus">&nbsp;Create</i></a>
+            <a href="@Url.Action("Create", "Staffs")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus">&nbsp;Create</i></a>
             @*<button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-eye-open">&nbsp;View</i></button>
                 <button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash">&nbsp;Delete</i></button>*@
         </div>
@@ -21,11 +22,6 @@
             <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-dashboard">&nbsp;Dashboard</i></a>
             <a href="#" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-home">&nbsp;Home</i></a>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-       
     </div>
 </div>
 

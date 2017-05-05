@@ -76,5 +76,9 @@ namespace BLL
         {
             return _dbContext.Set<TEntity>().Find(id);
         }
+        public TEntity GetById(string id)
+        {
+            return _dbContext.Set<TEntity>().Find(id);
+        }
     }
 }

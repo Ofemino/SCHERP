@@ -29,16 +29,17 @@ namespace SCHERP.Controllers
             return View();
         }
 
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public JsonResult CreateSession(SchoolSession session)
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Exclude = "Id")] FormCollection session)
         {
-            if (session != null)
+            if (ModelState.IsValid)
             {
-                return Json(new { msg = "1", reason = "Full!" });
+
 
             }
-            return Json(new { msg = "0", reason = "Empty!" });
+
+            return View("Index");
         }
     }
 }
