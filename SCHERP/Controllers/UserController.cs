@@ -44,7 +44,7 @@ namespace SCHERP.Controllers
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var u = userManager.FindById(id);
 
-            return View();
+            return View(u);
         }
 
         [HttpPost]
