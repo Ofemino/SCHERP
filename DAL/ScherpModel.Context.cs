@@ -51,5 +51,7 @@ namespace DAL
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<SchoolSession> SchoolSessions { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<MailSetting> MailSettings { get; set; }
     }
 }

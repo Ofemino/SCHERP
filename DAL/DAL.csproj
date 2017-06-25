@@ -84,6 +84,9 @@
     <Compile Include="Department.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MailSetting.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ManageGrade.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,9 @@
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TermlyResult.cs">
+      <DependentUpon>ScherpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs">
       <DependentUpon>ScherpModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -34,6 +34,7 @@
                     <td>Term</td>
                     <td>School Starts</td>
                     <td>School Ends</td>
+                    <td>School Opens(days)</td>
                     <td>Action</td>
                 </tr>
             </thead>
@@ -41,13 +42,21 @@
                 @{
                     foreach (var @s in @ViewBag.AllSession)
                     {
+                        var start = Convert.ToDateTime(@s.SchoolStart);
+                        var end = Convert.ToDateTime(@s.SchoolEnd);
+                        TimeSpan dayDiff = (end - start);
                         <tr>
-                            <td>@s.Session</td>
-                            <td>@s.Year</td>
+                            <td>@s.SessionL</td>
+                            <td>@s.YearL</td>
                             <td>@s.Term</td>
-                            <td>@s.SchoolStart</td>
-                            <td>@s.SchoolEnd</td>
-                            <td></td>
+                            <td>@s.SchoolStart.ToString("D")</td>
+                            <td>@s.SchoolEnd.ToString("D")</td>
+                            <td>~&nbsp;@dayDiff.Days</td>
+                            <td>
+                                <a href="@Url.Action("Edit", "SchoolSession", new {id = @s.Id})"><i class="glyphicon glyphicon-pencil"></i></a>
+                                &nbsp;|&nbsp;
+                                <a href="@Url.Action("Delete", "SchoolSession", new {id = @s.Id})"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
                         </tr>
                     }
                 }

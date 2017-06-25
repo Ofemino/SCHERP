@@ -3,10 +3,10 @@
     color: black;
 }
 
-.homeMenuLinks:hover {
-    text-decoration: none;
-    color: black;
-}
+    .homeMenuLinks:hover {
+        text-decoration: none;
+        color: black;
+    }
 
 .customFontSize {
     font-size: 18px !important;
@@ -26,7 +26,6 @@
 .tab-content > .tab-pane {
     /*display: block;*/
     visibility: hidden;
-
 }
 
 .tab-content > .active {
@@ -37,23 +36,22 @@
     margin-top: 15px;
 }
 
-.page-form .textarea {
-    min-height: 220px;
-    resize: none;
-}
+    .page-form .textarea {
+        min-height: 220px;
+        resize: none;
+    }
 
 .form-control {
     box-shadow: none;
     border-color: #eee;
     height: 49px;
-
 }
 
-.form-control:focus {
-    box-shadow: none;
-    border-bottom: solid 2pt rgba(227, 62, 62, 0.75) !important;
-    font-size: 15pt;
-}
+    .form-control:focus {
+        box-shadow: none;
+        border-bottom: solid 2pt rgba(227, 62, 62, 0.75) !important;
+        font-size: 15pt;
+    }
 
 .form-control-feedback {
     line-height: 50px;
@@ -65,10 +63,10 @@
     color: #fff;
 }
 
-.main-btn:hover {
-    background: #00a491;
-    color: #fff;
-}
+    .main-btn:hover {
+        background: #00a491;
+        color: #fff;
+    }
 
 .form-control-feedback {
     line-height: 50px;
@@ -108,7 +106,6 @@
     height: 1px;
     background-color: #ccc;
     z-order: 0;
-
 }
 
 .stepwizard-step {
@@ -138,8 +135,7 @@
     border-radius: 5% !important;
     padding: 15px !important;
     margin-right: 50px !important;
-    width: 170px!important;
-
+    width: 170px !important;
 }
 
 .subtitle {
@@ -148,12 +144,12 @@
 }
 
 .btn-login {
-    padding: 15px 25px!important;
-    color: #fff!important;
-    background-color: #2ecc71!important;
-    border: none!important;
-    border-radius: 4px!important;
-    border-bottom: 4px solid #27ae60!important;
+    padding: 15px 25px !important;
+    color: #fff !important;
+    background-color: #2ecc71 !important;
+    border: none !important;
+    border-radius: 4px !important;
+    border-bottom: 4px solid #27ae60 !important;
 }
 
 #profImgDiv img {
@@ -166,4 +162,16 @@
 
 .menuBtnDiv {
     margin-top: 50px !important;
+}
+
+.divLoader {
+    -moz-min-width: 100% !important;
+    -ms-min-width: 100% !important;
+    -o-min-width: 100% !important;
+    -webkit-min-width: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    z-index: 10000;
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.2);
 }

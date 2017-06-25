@@ -143,6 +143,19 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Scherp.dbo.MailSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MailSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailPort" Type="int" />
+          <Property Name="EnableSsl" Type="bit" />
+          <Property Name="MailHost" Type="varchar" MaxLength="50" />
+          <Property Name="MailFrom" Type="varchar" MaxLength="50" />
+          <Property Name="MailPwd" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="ManageGrade">
           <Key>
             <PropertyRef Name="Id" />
@@ -229,8 +242,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Session" Type="varchar" MaxLength="50" />
-          <Property Name="Year" Type="varchar" MaxLength="50" />
+          <Property Name="SessionL" Type="varchar" MaxLength="50" />
+          <Property Name="YearL" Type="varchar" MaxLength="50" />
           <Property Name="Term" Type="varchar" MaxLength="50" />
           <Property Name="SchoolStart" Type="date" />
           <Property Name="SchoolEnd" Type="date" />
@@ -394,6 +407,16 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="250" />
+          <Property Name="Avatar" Type="varchar" MaxLength="150" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -478,6 +501,17 @@
           <EntitySet Name="StudyHistory" EntityType="Self.StudyHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectTeacher" EntityType="Self.SubjectTeacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TermlyResult" EntityType="Self.TermlyResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailSettings" EntityType="Self.MailSettings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MailSettings].[Id] AS [Id], 
+    [MailSettings].[MailPort] AS [MailPort], 
+    [MailSettings].[EnableSsl] AS [EnableSsl], 
+    [MailSettings].[MailHost] AS [MailHost], 
+    [MailSettings].[MailFrom] AS [MailFrom], 
+    [MailSettings].[MailPwd] AS [MailPwd]
+    FROM [dbo].[MailSettings] AS [MailSettings]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -839,7 +873,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="ScherpModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="ScherpModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="ScherpModel.AspNetUser" />
-          <EntitySet Name="SchoolSessions" EntityType="ScherpModel.SchoolSession" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ScherpModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -852,6 +885,9 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="SchoolSessions" EntityType="ScherpModel.SchoolSession" />
+          <EntitySet Name="UserProfiles" EntityType="ScherpModel.UserProfile" />
+          <EntitySet Name="MailSettings" EntityType="ScherpModel.MailSetting" />
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -912,20 +948,6 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="ScherpModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="ScherpModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
-        <EntityType Name="SchoolSession">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Session" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SchoolStart" Type="DateTime" Precision="0" />
-          <Property Name="SchoolEnd" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="ScherpModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -958,6 +980,41 @@
           <End Type="ScherpModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ScherpModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="SchoolSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="YearL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolStart" Type="DateTime" Precision="0" />
+          <Property Name="SchoolEnd" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreateBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MailSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailPort" Type="Int32" />
+          <Property Name="EnableSsl" Type="Boolean" />
+          <Property Name="MailHost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1353,6 +1410,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ScherpModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
           <EntitySetMapping Name="SchoolSessions">
             <EntityTypeMapping TypeName="ScherpModel.SchoolSession">
               <MappingFragment StoreEntitySet="SchoolSession">
@@ -1362,20 +1427,35 @@
                 <ScalarProperty Name="SchoolEnd" ColumnName="SchoolEnd" />
                 <ScalarProperty Name="SchoolStart" ColumnName="SchoolStart" />
                 <ScalarProperty Name="Term" ColumnName="Term" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="YearL" ColumnName="YearL" />
+                <ScalarProperty Name="SessionL" ColumnName="SessionL" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ScherpModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ScherpModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailSettings">
+            <EntityTypeMapping TypeName="ScherpModel.MailSetting">
+              <MappingFragment StoreEntitySet="MailSettings">
+                <ScalarProperty Name="MailPwd" ColumnName="MailPwd" />
+                <ScalarProperty Name="MailFrom" ColumnName="MailFrom" />
+                <ScalarProperty Name="MailHost" ColumnName="MailHost" />
+                <ScalarProperty Name="EnableSsl" ColumnName="EnableSsl" />
+                <ScalarProperty Name="MailPort" ColumnName="MailPort" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

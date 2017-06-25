@@ -14,8 +14,6 @@ namespace SCHERP.Controllers
     public class UserController : Controller
     {
         private UsersRepository _userRepo;
-        private RoleUsersRepository _roleUser;
-
         ApplicationDbContext context = new ApplicationDbContext();
 
 
@@ -52,5 +50,7 @@ namespace SCHERP.Controllers
         {
             return View();
         }
+
+       
     }
 }

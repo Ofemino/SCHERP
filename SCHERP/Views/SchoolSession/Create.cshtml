@@ -11,96 +11,85 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
     <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
 }
-
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        @*<form action="@Url.Content(@"~/SchoolSession/Create")" method="POST" class="form-horizontal page-form" id="pageForm" role="form">*@
-
-        @using (Html.BeginForm("Create", "SchoolSession", FormMethod.Post, new { @class = "form-horizontal page-form", @id = "pageForm", @role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @*@Html.ValidationSummary(false, "Fields marked red are important!", new { @class = "text-danger" })*@
-
-            <div class="col-md-10">
+        <a href="@Url.Action("Index")" class="btn btn-sm pull-right btn-default"><i class="glyphicon glyphicon-list"></i> List</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 page-form">
+            <div class="row">
                 <div class="row">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                Session: <span class="lblImportant">*</span><br />
-                                @Html.TextBoxFor(m => m.Session, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2014/2015" })
-                                @Html.ValidationMessageFor(m => m.Session, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                Year: <span class="lblImportant">*</span><br />
-                                @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2015" })
-                                @Html.ValidationMessageFor(m => m.Year, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                Term: <span class="lblImportant">*</span><br />
-                                @{
-                                    var selectList = new SelectList(
-                                        new List<SelectListItem>
-                                        {
-                                                new SelectListItem {Text = "1ST TERM", Value = "1ST TERM"},
-                                                new SelectListItem {Text = "2ND TERM", Value = "2ND TERM"},
-                                                new SelectListItem {Text = "3RD TERM", Value = "3RD TERM"},
-                                        }, "Value", "Text");
-                                }
-                                @Html.DropDownListFor(m => m.Term, selectList, "== Select TERM ==", new { @class = "form-control", @required = "required" })
-                                @Html.ValidationMessageFor(m => m.Term, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            Session: <span class="lblImportant">*</span><br />
+                            @Html.TextBoxFor(m => m.SessionL, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2014/2015" })
+                            @Html.ValidationMessageFor(m => m.SessionL, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                School Starts: <span class="lblImportant">*</span><br />
-                                @Html.TextBoxFor(m => m.SchoolStart, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "mm/dd/yyyy" })
-                                @Html.ValidationMessageFor(m => m.SchoolStart, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                School Ends: <span class="lblImportant">*</span><br />
-                                @Html.TextBoxFor(m => m.SchoolEnd, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "mm/dd/yyyy" })
-                                @Html.ValidationMessageFor(m => m.SchoolEnd, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                School Days:<br />
-                                @Html.TextBox("SchoolDays", null, new { @class = "form-control", @type = "text", @readonly = "readonly" })
-                            </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            Year: <span class="lblImportant">*</span><br />
+                            @Html.TextBoxFor(m => m.YearL, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "2015" })
+                            @Html.ValidationMessageFor(m => m.YearL, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                Description: <br />
-                                <textarea required="required" name="Description" id="Description"
-                                          class="form-control textarea" rows="5"></textarea>
-                            </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            Term: <span class="lblImportant">*</span><br />
+                            @{
+                                var selectList = new SelectList(
+                                    new List<SelectListItem>
+                                    {
+                                            new SelectListItem {Text = "1ST TERM", Value = "1ST TERM"},
+                                            new SelectListItem {Text = "2ND TERM", Value = "2ND TERM"},
+                                            new SelectListItem {Text = "3RD TERM", Value = "3RD TERM"},
+                                    }, "Value", "Text");
+                            }
+                            @Html.DropDownListFor(m => m.Term, selectList, "== Select TERM ==", new { @class = "form-control", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.Term, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label><input id="SetDefaultCbx" name="SetDefaultCbx" type="checkbox" value="">Set as default session/term</label>
-                                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            School Starts: <span class="lblImportant">*</span><br />
+                            @Html.TextBoxFor(m => m.SchoolStart, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "mm/dd/yyyy" })
+                            @Html.ValidationMessageFor(m => m.SchoolStart, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            School Ends: <span class="lblImportant">*</span><br />
+                            @Html.TextBoxFor(m => m.SchoolEnd, new { @class = "form-control", @required = "required", @type = "text", @autocomplete = "off", @placeholder = "mm/dd/yyyy" })
+                            @Html.ValidationMessageFor(m => m.SchoolEnd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Description: <br />
+                            <textarea required="required" name="Description" id="Description"
+                                      class="form-control textarea" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input id="SetDefaultCbx" name="SetDefaultCbx" type="checkbox" value="">Set as default session/term</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="pull-right btn-login" id="btnSession" name="btnSession" type="submit">Save Entry</button>
-
             </div>
-                                    }
-        @*</form>*@
+            @Html.Hidden("TxtUrl", @Url.Content(@"~/SchoolSession/CreateSchoolSession"))
+            <button class="pull-right btn-login" id="btnSession" name="btnSession">Save Entry</button>
+        </div>
     </div>
 </div>
 

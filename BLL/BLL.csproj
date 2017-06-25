@@ -57,6 +57,7 @@
     <Compile Include="RoleUsersRepository.cs" />
     <Compile Include="SchoolSessionRepository.cs" />
     <Compile Include="SooRepository.cs" />
+    <Compile Include="UserProfileRepository.cs" />
     <Compile Include="UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>

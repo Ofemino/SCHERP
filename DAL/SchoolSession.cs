@@ -15,8 +15,8 @@ namespace DAL
     public partial class SchoolSession
     {
         public int Id { get; set; }
-        public string Session { get; set; }
-        public string Year { get; set; }
+        public string SessionL { get; set; }
+        public string YearL { get; set; }
         public string Term { get; set; }
         public Nullable<System.DateTime> SchoolStart { get; set; }
         public Nullable<System.DateTime> SchoolEnd { get; set; }

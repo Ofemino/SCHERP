@@ -1,0 +1,132 @@
+﻿@using BLL
+@using Microsoft.AspNet.Identity
+@model SCHERP.Models.UserProfileViewModel
+@{
+    ViewBag.Title = "User Profile";
+    ViewBag.SubTitle = "Edit";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@{
+    string avt = "";
+    var urepo = new UserProfileRepository();
+    var uid = User.Identity.GetUserId();
+    var profile = urepo.GetProfiles().Where(u => u.UserId.Equals(uid));
+    if (!profile.Any())
+    {
+        avt = Url.Content("~/Content/profilepics/") + "/" + "avatar04.png";
+    }
+    else
+    {
+        foreach (var u in profile)
+        {
+            avt = Url.Content("~/Content/profilepics/") + "/" + u.Avatar;
+        }
+    }
+
+}
+@section usage{
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/sweetalert2.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-datepicker3.css")" />
+    <link href="@Url.Content("~/Content/css/MyCustomStyles.css")" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn btn-group" style="padding-left: 0">
+            @*<a href="@Url.Action("Index", "User")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-list">&nbsp;List</i></a>*@
+            @*<button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-eye-open">&nbsp;View</i></button>
+                <button class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash">&nbsp;Delete</i></button>*@
+        </div>
+        <div class="btn btn-group pull-right" style="padding-right: 0">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-dashboard">&nbsp;Dashboard</i></a>
+            <a href="#" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-home">&nbsp;Home</i></a>
+        </div>
+    </div>
+</div>
+<style>
+    .profImg {
+        height: 120px;
+        width: auto;
+        vertical-align: text-bottom;
+    }
+</style>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Username & Avatar</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-5">
+                                    <div class="col-md-12">
+                                        <img src="@avt" class="img-circle pull-left profImg" alt="Profile Image" />
+                                    </div>
+                                    <div class="form-group" style="">
+                                        <label class="col-md-5" style="padding-right: 0px !important;margin-top: 10px !important;">Change Picture:</label>
+                                        <input name="txtAvatar" style="padding-left: 0px !important;" type="file" class="col-md-7 btn btn-sm btn-success" />
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <h2 style="padding-top: 30px; padding-left: 5px;">
+                                        @User.Identity.GetUserName().<br />
+
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Roles And Permission</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    Roles :
+                                </div>
+                                <div class="col-md-8" contenteditable="true">
+                                    Admin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="pull-right btn-login" id="btnSession" name="btnSession" type="submit">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script type="text/javascript" src="@Url.Content("~/Content/js/bootstrap-datepicker.min.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/js/sweetalert2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/SweetAlertMethods.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/MyCustomJs.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/schoolsession.js")"></script>
+}
+
+

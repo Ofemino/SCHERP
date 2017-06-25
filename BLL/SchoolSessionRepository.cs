@@ -15,9 +15,12 @@ namespace BLL
             return sessions;
         }
 
-        public SchoolSession FindById(int id)
+        public List<SchoolSession> FindById(int id)
         {
-            return GetById(id);
+            List<SchoolSession> sl = new List<SchoolSession>();
+            var ss = GetById(id);
+            sl.Add(ss);
+            return sl;
         }
 
         public int CreateSession(SchoolSession session)

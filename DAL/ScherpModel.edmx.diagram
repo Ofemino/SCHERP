@@ -30,10 +30,12 @@
         <EntityTypeShape EntityType="ScherpModel.AspNetUserClaim" Width="1.5" PointX="16.25" PointY="15.625" />
         <EntityTypeShape EntityType="ScherpModel.AspNetUserLogin" Width="1.5" PointX="16.25" PointY="13" />
         <EntityTypeShape EntityType="ScherpModel.AspNetUser" Width="1.5" PointX="14" PointY="13.375" />
-        <EntityTypeShape EntityType="ScherpModel.SchoolSession" Width="1.5" PointX="2.75" PointY="13.75" />
         <AssociationConnector Association="ScherpModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ScherpModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ScherpModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ScherpModel.SchoolSession" Width="1.5" PointX="3.375" PointY="13.75" />
+        <EntityTypeShape EntityType="ScherpModel.UserProfile" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="ScherpModel.MailSetting" Width="1.5" PointX="15.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

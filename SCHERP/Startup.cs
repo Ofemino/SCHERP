@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Configuration;
+using Hangfire;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
@@ -13,6 +15,11 @@ namespace SCHERP
         {
             ConfigureAuth(app);
             CreateRolesAndUsers();
+
+            string constring = ConfigurationManager.ConnectionStrings["ScherpHangFire"].ConnectionString;
+            GlobalConfiguration.Configuration.UseSqlServerStorage(constring);
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
         }
         // In this method we will create default User roles and Admin user for login   
         private void CreateRolesAndUsers()
